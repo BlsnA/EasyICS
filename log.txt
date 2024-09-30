@@ -1,0 +1,30 @@
+############### LOG ENTRY START ###############
+Created 2 events on 2024-09-29 21:20:05
+
+<Event 'EFL Cup Round 4: Tottenham Hotspur vs Manchester City' begin:2024-10-30T20:45:00+01:00 end:2024-10-30T22:45:00+01:00>BEGIN:VEVENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:
+TRIGGER:-PT15M
+END:VALARM
+DTEND:20241030T214500Z
+LOCATION:Tottenham - Tottenham Hotspur Stadium
+DTSTART:20241030T194500Z
+SUMMARY:EFL Cup Round 4: Tottenham Hotspur vs Manchester City
+UID:<ID>
+END:VEVENT
+
+<Event 'MotoGP: Australian Grand Prix' begin:2024-10-20T05:00:00+02:00 end:2024-10-20T07:00:00+02:00>BEGIN:VEVENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:
+TRIGGER:-PT15M
+END:VALARM
+DTEND:20241020T050000Z
+LOCATION:Phillip Island - Phillip Island Circuit
+DTSTART:20241020T030000Z
+SUMMARY:MotoGP: Australian Grand Prix
+UID:<ID>
+END:VEVENT
+
+############### LOG ENTRY END ###############
