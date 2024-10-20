@@ -5,6 +5,12 @@ from tzlocal import get_localzone
 import re
 import os
 import pytz
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--noround", action="store_true", help="include to avoid rounding to the earlier quarter hour")
+args = parser.parse_args()
+should_not_round = args.noround
 
 def set_end(begin: str, duration: str) -> datetime:
     end = begin + timedelta(hours=int(duration))
@@ -45,16 +51,19 @@ def set_begin(date: str, time: str) -> datetime:
     event_start_hours = time.split(":")[0] # minutes of event start, e.g.: 20
     event_start_minutes = time.split(":")[1] # minutes of event start, e.g.: 45
 
-    if int(event_start_minutes) < 15:
-        event_start_time = f"{event_start_hours}:00:00"
-    elif int(event_start_minutes) < 30:
-        event_start_time = f"{event_start_hours}:15:00"
-    elif int(event_start_minutes) < 45:
-        event_start_time = f"{event_start_hours}:30:00"
-    elif int(event_start_minutes) < 60:
-        event_start_time = f"{event_start_hours}:45:00"
+    if should_not_round:
+        event_start_time = f"{event_start_hours}:{event_start_minutes}:00"
     else:
-        raise Exception("Invalid Start Time")
+        if int(event_start_minutes) < 15:
+            event_start_time = f"{event_start_hours}:00:00"
+        elif int(event_start_minutes) < 30:
+            event_start_time = f"{event_start_hours}:15:00"
+        elif int(event_start_minutes) < 45:
+            event_start_time = f"{event_start_hours}:30:00"
+        elif int(event_start_minutes) < 60:
+            event_start_time = f"{event_start_hours}:45:00"
+        else:
+            raise Exception("Invalid Start Time")
 
     if utc_offset >= 0:
         formatted_time = f"T{event_start_time}+0{utc_offset}:00" # format timestamp to iso format
